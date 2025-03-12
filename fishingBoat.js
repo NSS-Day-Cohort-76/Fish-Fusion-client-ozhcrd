@@ -1,10 +1,3 @@
-// Create database of fish objects with information provided 
-// Define a function that the other modules can invoke in order to see today's catch
-// Function must be defined as the value of a variable named boatInventory
-// The array of fish objects will be the return value when the function is invoked (see data below).
-
-
-
 const database = [
     { id: 1, species: "Halibut", weight: 6, price: 3.55, amount: 30 },
     { id: 2, species: "Mackerel", weight: 3, price: 4.10, amount: 48 },
@@ -20,5 +13,4 @@ const boatInventory = () => {
  return database 
 }
 
-module.exports = {
-    boatInventory }
+module.exports = {boatInventory}

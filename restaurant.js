@@ -1,6 +1,26 @@
-//  Import & invoke mongerInventory function. This module should also define a function that build 
-// an HTML version of their daily menu. The function should return the generated HTML string. 
-// The function must be named fishMenu.
-// Chef sets her price, which is passed as argument to fish Menu function so it can be passed
-// along to fishmonger function when chef buys fish.  If monger has fish at price point or less,
-// chef buys 50 percent of existing inventory.  Then, creates 3 different meals per fish (soup, sammie, grilled)
+const {mongerInventory} = require("./fishMonger.js")
+
+function fishMenu(chefPrice) {
+    const halfAmount = mongerInventory(chefPrice).map((inv) => ({
+    species: inv.species,
+    amount: (inv.amount / 2) }))
+    
+    const htmlString = halfAmount
+    .map(item => `
+        <h2>${item.species}</h2>
+        <section class="menu__item">${item.species} Soup</section>
+        <section class="menu__item">${item.species} Sandwich</section>
+        <section class="menu__item">Grilled ${item.species}</section>
+    `)
+    .join('')
+
+    const htmlMenu = `<h1>Menu</h1>
+
+<article class="menu">
+${htmlString}
+</article>`
+
+return htmlMenu
+}
+
+module.exports = {fishMenu}
